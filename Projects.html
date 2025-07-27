@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Vinayak Joshi</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1d4ed8;
+            --accent-color: #60a5fa;
+            --text-dark: #f8fafc;
+            --text-light: #cbd5e1;
+            --text-muted: #94a3b8;
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --bg-card: #1e293b;
+            --bg-glass: rgba(30, 41, 59, 0.8);
+            --border-color: rgba(148, 163, 184, 0.2);
+            --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+            --gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+            --glow-primary: 0 0 20px rgba(59, 130, 246, 0.3);
+            --glow-secondary: 0 0 30px rgba(139, 92, 246, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-darker);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-dark);
+            background: rgba(59, 130, 246, 0.2);
+            box-shadow: var(--glow-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 80%;
+            box-shadow: var(--glow-primary);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            position: relative;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .page-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl), var(--glow-primary);
+            border-color: var(--primary-color);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-image {
+            height: 200px;
+            background: var(--gradient-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image i {
+            font-size: 4rem;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .project-category {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .link-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .link-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md), var(--glow-primary);
+        }
+
+        .link-secondary {
+            background: var(--bg-darker);
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+        }
+
+        .link-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .page-header {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .projects-section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .project-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">VJ</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Projects.html" class="active">Projects</a></li>
+                <li><a href="Skills.html">Skills</a></li>
+                <li><a href="Contacts.html">Contact</a></li>
+                <li><a href="More.html">More</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>My Projects</h1>
+            <p>Explore my journey in machine learning and AI through these innovative projects that demonstrate practical applications of cutting-edge technologies in healthcare, natural language processing, and intelligent systems.</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="projects-container">
+            <div class="projects-grid">
+                <!-- Diabetes Risk Predictor -->
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Diabetes Risk Predictor</h3>
+                        <p class="project-category">Healthcare AI • Machine Learning</p>
+                        <p class="project-description">
+                            Developed a machine learning web application for diabetes risk assessment achieving clinical-grade accuracy using validated algorithms on medical datasets with 8 clinical parameters evaluation. Deployed enterprise-grade application on Streamlit Cloud with interactive risk visualization and real-time analysis.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">Clinical ML</span>
+                            <span class="tech-tag">Healthcare AI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/vinayakjoshi04/Diabetes-Prediction-Web" class="project-link link-primary">
+                                <i class="fab fa-github"></i>
+                                View Code
+                            </a>
+                            <a href="https://diabetes-prediction-web-hnjflljx93knebcmkzvgnk.streamlit.app/" class="project-link link-secondary">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Heart Disease Prediction System -->
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Heart Disease Prediction System</h3>
+                        <p class="project-category">Medical AI • Statistical Modeling</p>
+                        <p class="project-description">
+                            Built an AI-powered diagnostic system for early cardiovascular disease detection using classification algorithms on clinical datasets. Performed extensive exploratory data analysis and correlation studies to identify key biomarkers and risk factors, implementing feature scaling and handling class imbalance using SMOTE techniques.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Statistical Modeling</span>
+                            <span class="tech-tag">Medical Data Analysis</span>
+                            <span class="tech-tag">SMOTE</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/vinayakjoshi04/Heart-Disease" class="project-link link-primary">
+                                <i class="fab fa-github"></i>
+                                View Code
+                            </a>
+                            <a href="https://github.com/vinayakjoshi04/Heart-Disease" class="project-link link-secondary">
+                                <i class="fas fa-chart-line"></i>
+                                View Analysis
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Story Generator -->
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI Story Generator</h3>
+                        <p class="project-category">GenAI • Natural Language Processing</p>
+                        <p class="project-description">
+                            Developed a feature-rich web application leveraging Google Gemini AI for intelligent story generation with customizable parameters including genre, length, character types, and multi-language support across 5 languages. Implemented advanced features including story continuation, text-to-speech integration, and PDF/TXT export functionality.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">Google Gemini AI</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">Web Development</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/vinayakjoshi04/AI-Story-Generator-GenAI-Project" class="project-link link-primary">
+                                <i class="fab fa-github"></i>
+                                View Code
+                            </a>
+                            <a href="https://ai-story-generator-genai-project.onrender.com/" class="project-link link-secondary">
+                                <i class="fas fa-play"></i>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mom's Kitchen Food Delivery Platform -->
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Mom's Kitchen Food Delivery Platform</h3>
+                        <p class="project-category">Full-Stack Development • React</p>
+                        <p class="project-description">
+                            Developed a comprehensive food delivery platform using React and Supabase architecture with modern UI/UX design and real-time order management functionality. Features include user authentication, menu management, cart functionality, order tracking, and responsive design optimized for all devices.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Supabase</span>
+                            <span class="tech-tag">OpenAPI</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">UI/UX Design</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/vinayakjoshi04/Moms_Kitchen" class="project-link link-primary">
+                                <i class="fab fa-github"></i>
+                                View Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rain Predictor -->
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-cloud-rain"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Rain Predictor</h3>
+                        <p class="project-category">Flask • Machine Learning</p>
+                        <p class="project-description">
+                             This project implements a robust rainfall prediction system that combines meteorological data analysis with machine learning to forecast whether it will rain on a given day. The system achieves 82.43% accuracy using XGBoost classification and provides predictions through an intuitive web interface.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Statistical Modeling</span>
+                            <span class="tech-tag">Rain Data Analysis</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/vinayakjoshi04/Rain-Predictor" class="project-link link-primary">
+                                <i class="fab fa-github"></i>
+                                View Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Price Predictor -->
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Car Price Predictor</h3>
+                        <p class="project-category">Flask • Machine Learning</p>
+                        <p class="project-description">
+                             The Car Price Predictor is a web application that uses machine learning to predict the price of used cars based on various features and specifications. This project integrates a Linear Regression model with a Flask backend and an intuitive HTML/CSS/JavaScript frontend to provide users with accurate price estimates.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Statistical Modeling</span>
+                            <span class="tech-tag">Car Price Data Analysis</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/vinayakjoshi04/Car-Price-Predictor" class="project-link link-primary">
+                                <i class="fab fa-github"></i>
+                                View Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(30, 41, 59, 0.95)';
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.background = 'rgba(30, 41, 59, 0.8)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe project cards for animation
+        document.querySelectorAll('.project-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
