@@ -51,6 +51,7 @@
                 radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+            overflow-x: hidden;
         }
 
         /* Navigation */
@@ -63,7 +64,7 @@
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1rem;
             transition: all 0.3s ease;
         }
 
@@ -88,7 +89,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
             align-items: center;
         }
 
@@ -130,6 +131,7 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            z-index: 1001;
         }
 
         .mobile-menu span {
@@ -141,12 +143,59 @@
             border-radius: 2px;
         }
 
+        .mobile-menu.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .mobile-nav-links {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-darker);
+            backdrop-filter: blur(20px);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            z-index: 999;
+        }
+
+        .mobile-nav-links.active {
+            display: flex;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 6rem 2rem 2rem;
+            padding: 5rem 1rem 2rem;
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
             position: relative;
         }
@@ -169,14 +218,14 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 3rem;
             align-items: center;
             position: relative;
             z-index: 1;
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1rem;
@@ -188,14 +237,14 @@
         }
 
         .hero-content .subtitle {
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
             color: var(--text-light);
             margin-bottom: 2rem;
             font-weight: 400;
         }
 
         .hero-content .description {
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             color: var(--text-muted);
             margin-bottom: 2rem;
             line-height: 1.8;
@@ -204,7 +253,7 @@
         .contact-info {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.5rem;
+            gap: 1rem;
             margin-bottom: 3rem;
         }
 
@@ -220,6 +269,7 @@
             background: var(--bg-card);
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-color);
+            font-size: clamp(0.8rem, 2vw, 1rem);
         }
 
         .contact-item:hover {
@@ -250,7 +300,10 @@
             gap: 0.5rem;
             cursor: pointer;
             border: none;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            text-align: center;
+            justify-content: center;
+            min-width: 160px;
         }
 
         .btn-primary {
@@ -299,8 +352,8 @@
 
         .profile-container {
             position: relative;
-            width: 350px;
-            height: 350px;
+            width: clamp(280px, 40vw, 350px);
+            height: clamp(280px, 40vw, 350px);
         }
 
         .profile-bg {
@@ -331,8 +384,8 @@
 
         .profile-pic {
             position: relative;
-            width: 320px;
-            height: 320px;
+            width: calc(100% - 30px);
+            height: calc(100% - 30px);
             border-radius: 50%;
             object-fit: cover;
             border: 8px solid var(--bg-card);
@@ -359,34 +412,30 @@
             box-shadow: var(--shadow-lg), var(--glow-primary);
             animation: float 4s ease-in-out infinite;
             backdrop-filter: blur(10px);
+            width: clamp(40px, 6vw, 60px);
+            height: clamp(40px, 6vw, 60px);
         }
 
         .floating-icon:nth-child(1) {
             top: 10%;
             right: 10%;
-            width: 60px;
-            height: 60px;
             animation-delay: -1s;
         }
 
         .floating-icon:nth-child(2) {
             bottom: 15%;
             left: 5%;
-            width: 50px;
-            height: 50px;
             animation-delay: -2s;
         }
 
         .floating-icon:nth-child(3) {
             top: 20%;
             left: 15%;
-            width: 45px;
-            height: 45px;
             animation-delay: -3s;
         }
 
         .floating-icon i {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 2vw, 1.5rem);
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -395,7 +444,7 @@
 
         /* Skills Grid */
         .skills-preview {
-            padding: 4rem 2rem;
+            padding: 4rem 1rem;
             background: var(--bg-dark);
             position: relative;
         }
@@ -422,7 +471,7 @@
         }
 
         .skills-container h2 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 2.5rem);
             font-weight: 700;
             margin-bottom: 1rem;
             background: var(--gradient-primary);
@@ -432,7 +481,7 @@
         }
 
         .skills-container p {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
             color: var(--text-muted);
             margin-bottom: 3rem;
             max-width: 600px;
@@ -442,7 +491,7 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -498,7 +547,7 @@
         }
 
         .skill-card h3 {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
             font-weight: 600;
             margin-bottom: 1rem;
             color: var(--text-dark);
@@ -507,6 +556,7 @@
         .skill-card p {
             color: var(--text-muted);
             line-height: 1.6;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         /* Footer */
@@ -514,13 +564,14 @@
             background: var(--bg-darker);
             color: var(--text-light);
             text-align: center;
-            padding: 2rem;
+            padding: 2rem 1rem;
             margin-top: 4rem;
             border-top: 1px solid var(--border-color);
         }
 
         .footer p {
             margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .social-links {
@@ -538,6 +589,11 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .social-links a:hover {
@@ -564,7 +620,22 @@
             }
         }
 
-        /* Responsive Design */
+        /* Enhanced Mobile Responsive Design */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-container {
+                gap: 2rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -574,28 +645,18 @@
                 display: flex;
             }
 
+            .hero {
+                padding: 4rem 1rem 2rem;
+            }
+
             .hero-container {
                 grid-template-columns: 1fr;
                 gap: 2rem;
                 text-align: center;
             }
 
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-content .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .profile-container {
-                width: 280px;
-                height: 280px;
-            }
-
-            .profile-pic {
-                width: 250px;
-                height: 250px;
+            .hero-image {
+                order: -1;
             }
 
             .contact-info {
@@ -604,16 +665,17 @@
 
             .cta-buttons {
                 justify-content: center;
-                flex-direction: column;
-                align-items: center;
+                width: 100%;
+            }
+
+            .btn {
+                min-width: 140px;
+                padding: 0.8rem 1.5rem;
             }
 
             .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                padding: 4rem 1rem 2rem;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
             }
 
             .skills-preview {
@@ -622,8 +684,12 @@
         }
 
         @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 2rem;
+            .navbar {
+                padding: 0.5rem 1rem;
+            }
+
+            .hero {
+                padding: 3.5rem 0.5rem 2rem;
             }
 
             .profile-container {
@@ -631,20 +697,110 @@
                 height: 240px;
             }
 
-            .profile-pic {
-                width: 210px;
-                height: 210px;
+            .contact-info {
+                gap: 0.5rem;
             }
 
-            .btn {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.9rem;
-                width: 100%;
-                justify-content: center;
+            .contact-item {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
             }
 
             .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
                 width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .skill-card {
+                padding: 1.5rem;
+            }
+
+            .skills-preview {
+                padding: 2rem 0.5rem;
+            }
+
+            .floating-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .floating-icon i {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero {
+                padding: 3rem 0.25rem 1.5rem;
+            }
+
+            .profile-container {
+                width: 200px;
+                height: 200px;
+            }
+
+            .btn {
+                max-width: 250px;
+                padding: 0.7rem 0.8rem;
+            }
+
+            .skill-card {
+                padding: 1rem;
+            }
+
+            .floating-icon {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        /* Very large screens */
+        @media (min-width: 1440px) {
+            .hero-container {
+                max-width: 1400px;
+            }
+
+            .skills-container {
+                max-width: 1400px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Landscape mobile devices */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 3rem 1rem 2rem;
+            }
+
+            .profile-container {
+                width: 200px;
+                height: 200px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.1rem;
             }
         }
 
@@ -657,6 +813,14 @@
         .profile-pic {
             opacity: 0;
             animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        /* High DPI screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .profile-pic {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
         }
     </style>
 </head>
@@ -679,6 +843,15 @@
                 <span></span>
             </div>
         </div>
+        <!-- Mobile Navigation Links -->
+        <div class="mobile-nav-links">
+            <a href="index.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="Projects.html">Projects</a>
+            <a href="Skills.html">Skills</a>
+            <a href="Contacts.html">Contact</a>
+            <a href="More.html">More</a>
+        </div>
     </nav>
 
     <!-- Hero Section -->
@@ -699,14 +872,19 @@
                         <i class="fas fa-envelope"></i>
                         <span>vinayakjoshi2004@gmail.com</span>
                     </a>
-                    <a href="https://github.com/vinayakjoshi04" class="contact-item">
+                    <a href="https://github.com/vinayakjoshi04" class="contact-item" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-github"></i>
                         <span>GitHub</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/vinayak-joshi-99521528b/" class="contact-item">
+                    <a href="https://www.linkedin.com/in/vinayak-joshi-99521528b/" class="contact-item" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-linkedin"></i>
                         <span>LinkedIn</span>
                     </a>
+                    <a href="https://leetcode.com/u/VinayakJoshi04/" class="contact-item" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cdn.simpleicons.org/leetcode/ffa116" alt="LeetCode" style="width:20px; height:20px; margin-right:8px; vertical-align:middle;">
+                        <span>LeetCode Profile</span>
+                    </a>
+
                 </div>
 
                 <div class="cta-buttons">
@@ -718,9 +896,9 @@
                         <i class="fas fa-comments"></i>
                         Let's Connect
                     </a>
-                    <a href="assets/Resume.pdf" class="btn btn-resume" target="_blank" download>
-                        <i class="fas fa-download"></i>
-                        Download Resume
+                    <a href="assets/Resume.pdf" class="btn btn-resume" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-pdf"></i>
+                        View Resume
                     </a>
                 </div>
             </div>
@@ -729,7 +907,7 @@
                 <div class="profile-container">
                     <div class="profile-bg"></div>
                     <img src="assets/Vinayak Joshi.jpg" 
-                         alt="Vinayak Joshi" class="profile-pic">
+                         alt="Vinayak Joshi - ML Engineer & AI Specialist" class="profile-pic">
                     <div class="floating-elements">
                         <div class="floating-icon">
                             <i class="fas fa-brain"></i>
@@ -791,8 +969,8 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="social-links">
-            <a href="https://github.com/vinayakjoshi04"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/vinayak-joshi-99521528b/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/vinayakjoshi04" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/vinayak-joshi-99521528b/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
             <a href="mailto:vinayakjoshi2004@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
         <p>&copy; 2025 Vinayak Joshi. All rights reserved.</p>
@@ -826,12 +1004,40 @@
             }
         });
 
-        // Mobile menu toggle (basic functionality)
+        // Enhanced Mobile menu toggle
         const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
+        const mobileNavLinks = document.querySelector('.mobile-nav-links');
 
         mobileMenu.addEventListener('click', function() {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            mobileMenu.classList.toggle('active');
+            mobileNavLinks.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (mobileNavLinks.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                mobileNavLinks.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileMenu.contains(e.target) && !mobileNavLinks.contains(e.target)) {
+                if (mobileNavLinks.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    mobileNavLinks.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
         });
 
         // Intersection Observer for animations
@@ -881,15 +1087,96 @@
             });
         });
 
-        // Parallax effect for hero section
-        window.addEventListener('scroll', function() {
+        // Parallax effect for hero section (optimized for mobile)
+        let ticking = false;
+        
+        function updateParallax() {
             const scrolled = window.pageYOffset;
             const parallax = document.querySelector('.profile-bg');
-            const speed = scrolled * 0.5;
+            const speed = scrolled * 0.3; // Reduced speed for better mobile performance
             
-            if (parallax) {
+            if (parallax && window.innerWidth > 768) { // Only apply on desktop
                 parallax.style.transform = `translateY(${speed}px)`;
             }
+            
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Lazy loading for profile image
+        const profileImg = document.querySelector('.profile-pic');
+        if (profileImg) {
+            profileImg.addEventListener('load', function() {
+                this.style.opacity = '1';
+            });
+            
+            // Fallback for broken images
+            profileImg.addEventListener('error', function() {
+                this.style.opacity = '1';
+                this.alt = 'Vinayak Joshi - Profile Image';
+            });
+        }
+
+        // Performance optimization: Debounce resize events
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                // Reset any transforms on resize to prevent layout issues
+                const parallax = document.querySelector('.profile-bg');
+                if (parallax) {
+                    parallax.style.transform = '';
+                }
+            }, 250);
+        });
+
+        // Touch events for better mobile interaction
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartY = e.changedTouches[0].screenY;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeDistance = touchStartY - touchEndY;
+            const minSwipeDistance = 50;
+
+            if (Math.abs(swipeDistance) > minSwipeDistance) {
+                // Add any swipe-based functionality here if needed
+                // For example, closing mobile menu on swipe up
+                if (swipeDistance > 0 && mobileNavLinks.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    mobileNavLinks.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        }
+
+        // Preload critical images for better performance
+        const criticalImages = [
+            'assets/Vinayak Joshi.jpg'
+        ];
+
+        criticalImages.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+
+        // Add loading states
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
         });
     </script>
 </body>

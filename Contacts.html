@@ -61,7 +61,7 @@
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1rem;
             transition: all 0.3s ease;
         }
 
@@ -86,7 +86,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
             align-items: center;
         }
 
@@ -100,7 +100,7 @@
             position: relative;
         }
 
-        .nav-links a:hover, .nav-links a.active {
+        .nav-links a:hover {
             color: var(--text-dark);
             background: rgba(59, 130, 246, 0.2);
             box-shadow: var(--glow-primary);
@@ -118,7 +118,7 @@
             transform: translateX(-50%);
         }
 
-        .nav-links a:hover::after, .nav-links a.active::after {
+        .nav-links a:hover::after {
             width: 80%;
             box-shadow: var(--glow-primary);
         }
@@ -128,6 +128,8 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            z-index: 1001;
+            position: relative;
         }
 
         .mobile-menu span {
@@ -137,6 +139,62 @@
             margin: 3px 0;
             transition: 0.3s;
             border-radius: 2px;
+        }
+
+        .mobile-menu.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Mobile navigation overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-nav-overlay.active {
+            display: flex;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 500;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .mobile-nav-links a:hover, .mobile-nav-links a.active {
+            color: var(--text-dark);
+            background: rgba(59, 130, 246, 0.2);
+            box-shadow: var(--glow-primary);
         }
 
         /* Page Header */
@@ -168,7 +226,7 @@
         }
 
         .page-header h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 800;
             margin-bottom: 1rem;
             background: var(--gradient-primary);
@@ -178,7 +236,7 @@
         }
 
         .page-header p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: var(--text-muted);
             line-height: 1.8;
         }
@@ -209,7 +267,7 @@
         }
 
         .contact-info h2 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             font-weight: 700;
             margin-bottom: 1rem;
             background: var(--gradient-secondary);
@@ -222,6 +280,7 @@
             color: var(--text-muted);
             margin-bottom: 2rem;
             line-height: 1.7;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .contact-details {
@@ -268,12 +327,14 @@
             font-weight: 600;
             margin-bottom: 0.3rem;
             color: var(--text-dark);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
         }
 
         .contact-text p {
             color: var(--text-muted);
             margin: 0;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+            word-break: break-all;
         }
 
         /* Social Links */
@@ -283,7 +344,7 @@
         }
 
         .social-section h3 {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
             font-weight: 600;
             margin-bottom: 1.5rem;
             color: var(--text-dark);
@@ -311,7 +372,7 @@
             transition: all 0.3s ease;
         }
 
-        .social-link:hover {
+        .social-link:hover, .social-link:focus {
             background: var(--primary-color);
             color: white;
             transform: translateY(-3px);
@@ -330,7 +391,7 @@
         }
 
         .contact-form h2 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             font-weight: 700;
             margin-bottom: 1rem;
             background: var(--gradient-primary);
@@ -348,6 +409,7 @@
             margin-bottom: 0.5rem;
             font-weight: 500;
             color: var(--text-dark);
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .form-control {
@@ -357,7 +419,7 @@
             border: 1px solid var(--border-color);
             border-radius: 0.8rem;
             color: var(--text-dark);
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             transition: all 0.3s ease;
             font-family: inherit;
         }
@@ -384,14 +446,18 @@
             color: white;
             border: none;
             border-radius: 0.8rem;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
-        .submit-btn:hover {
+        .submit-btn:hover, .submit-btn:focus {
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg), var(--glow-primary);
         }
@@ -431,7 +497,7 @@
         }
 
         .quick-contact h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: 700;
             margin-bottom: 1rem;
             background: var(--gradient-accent);
@@ -441,7 +507,7 @@
         }
 
         .quick-contact p {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.2vw, 1.1rem);
             color: var(--text-muted);
             margin-bottom: 2rem;
             line-height: 1.8;
@@ -467,9 +533,11 @@
             font-weight: 500;
             transition: all 0.3s ease;
             box-shadow: var(--shadow-sm);
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            white-space: nowrap;
         }
 
-        .quick-action:hover {
+        .quick-action:hover, .quick-action:focus {
             background: var(--primary-color);
             color: white;
             transform: translateY(-3px);
@@ -494,6 +562,21 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+            
+            .contact-container {
+                gap: 3rem;
+            }
+            
+            .contact-info,
+            .contact-form {
+                padding: 2.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -505,10 +588,6 @@
 
             .page-header {
                 padding: 6rem 1rem 3rem;
-            }
-
-            .page-header h1 {
-                font-size: 2.5rem;
             }
 
             .contact-container {
@@ -526,20 +605,136 @@
                 padding: 2rem;
             }
 
+            .contact-icon {
+                width: 45px;
+                height: 45px;
+            }
+
+            .contact-icon i {
+                font-size: 1.1rem;
+            }
+
+            .social-link {
+                width: 55px;
+                height: 55px;
+                font-size: 1.3rem;
+            }
+
             .quick-actions {
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
+            }
+
+            .quick-action {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
             }
         }
 
         @media (max-width: 480px) {
-            .page-header h1 {
-                font-size: 2rem;
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .page-header {
+                padding: 5rem 1rem 2rem;
             }
 
             .contact-info,
             .contact-form {
                 padding: 1.5rem;
+            }
+
+            .contact-item {
+                padding: 0.8rem;
+                gap: 0.8rem;
+            }
+
+            .contact-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .contact-icon i {
+                font-size: 1rem;
+            }
+
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .social-links {
+                gap: 0.8rem;
+            }
+
+            .form-control {
+                padding: 0.8rem;
+            }
+
+            .submit-btn {
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .contact-info,
+            .contact-form {
+                padding: 1rem;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .social-links {
+                justify-content: space-around;
+            }
+        }
+
+        /* High DPI displays */
+        @media (min-resolution: 2dppx) {
+            .contact-icon,
+            .social-link {
+                box-shadow: var(--shadow-md);
+            }
+        }
+
+        /* Landscape orientation on mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .page-header {
+                padding: 4rem 1rem 2rem;
+            }
+            
+            .contact-section,
+            .quick-contact {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .navbar,
+            .mobile-nav-overlay,
+            .quick-contact {
+                display: none;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .contact-info,
+            .contact-form {
+                background: white;
+                box-shadow: none;
+                border: 1px solid #ccc;
             }
         }
     </style>
@@ -557,13 +752,25 @@
                 <li><a href="Contacts.html" class="active">Contact</a></li>
                 <li><a href="More.html">More</a></li>
             </ul>
-            <div class="mobile-menu">
+            <div class="mobile-menu" id="mobileMenu">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Projects.html">Projects</a></li>
+            <li><a href="Skills.html">Skills</a></li>
+            <li><a href="Contacts.html" class="active">Contact</a></li>
+            <li><a href="More.html">More</a></li>
+        </ul>
+    </div>
 
     <!-- Page Header -->
     <section class="page-header">
@@ -626,13 +833,13 @@
                 <div class="social-section">
                     <h3>Connect With Me</h3>
                     <div class="social-links">
-                        <a href="https://github.com/vinayakjoshi04" class="social-link" target="_blank">
+                        <a href="https://github.com/vinayakjoshi04" class="social-link" target="_blank" aria-label="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/vinayak-joshi-99521528b/" class="social-link" target="_blank">
+                        <a href="https://www.linkedin.com/in/vinayak-joshi-99521528b/" class="social-link" target="_blank" aria-label="LinkedIn">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="mailto:vinayakjoshi2004@gmail.com" class="social-link">
+                        <a href="mailto:vinayakjoshi2004@gmail.com" class="social-link" aria-label="Email">
                             <i class="fas fa-envelope"></i>
                         </a>
                     </div>
@@ -696,6 +903,38 @@
     </section>
 
     <script>
+        // Mobile menu functionality
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        const body = document.body;
+
+        function toggleMobileNav() {
+            mobileMenu.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
+            body.style.overflow = mobileNavOverlay.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        mobileMenu.addEventListener('click', toggleMobileNav);
+
+        // Close mobile menu when clicking on overlay
+        mobileNavOverlay.addEventListener('click', function(e) {
+            if (e.target === mobileNavOverlay) {
+                toggleMobileNav();
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', toggleMobileNav);
+        });
+
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileNavOverlay.classList.contains('active')) {
+                toggleMobileNav();
+            }
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -722,20 +961,39 @@
             }
         });
 
-        // Mobile menu toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenu.addEventListener('click', function() {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-
-        // Form submission
+        // Form submission with better UX
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const submitBtn = document.querySelector('.submit-btn');
             const originalText = submitBtn.innerHTML;
+            
+            // Validate form fields
+            const formData = new FormData(this);
+            let isValid = true;
+            
+            // Simple validation
+            for (let [key, value] of formData.entries()) {
+                if (!value.trim()) {
+                    isValid = false;
+                    const field = document.getElementById(key);
+                    field.style.borderColor = '#ef4444';
+                    setTimeout(() => {
+                        field.style.borderColor = 'var(--border-color)';
+                    }, 3000);
+                }
+            }
+            
+            if (!isValid) {
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please fill all fields';
+                submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = 'var(--gradient-primary)';
+                }, 2000);
+                return;
+            }
             
             // Show loading state
             submitBtn.disabled = true;
@@ -749,6 +1007,32 @@
                 // Reset form
                 this.reset();
                 
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 0.8rem;
+                    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+                    z-index: 9999;
+                    font-weight: 500;
+                    animation: slideInRight 0.3s ease;
+                `;
+                successMessage.innerHTML = '<i class="fas fa-check-circle"></i> Your message has been sent successfully!';
+                document.body.appendChild(successMessage);
+                
+                // Remove success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.animation = 'slideOutRight 0.3s ease';
+                    setTimeout(() => {
+                        document.body.removeChild(successMessage);
+                    }, 300);
+                }, 5000);
+                
                 // Reset button after 3 seconds
                 setTimeout(() => {
                     submitBtn.disabled = false;
@@ -757,6 +1041,33 @@
                 }, 3000);
             }, 2000);
         });
+
+        // Add animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
 
         // Intersection Observer for animations
         const observerOptions = {
@@ -768,6 +1079,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -776,6 +1088,126 @@
         document.querySelectorAll('.contact-info, .contact-form').forEach(item => {
             observer.observe(item);
         });
+
+        // Add focus management for accessibility
+        document.addEventListener('keydown', function(e) {
+            // Tab navigation for mobile menu
+            if (mobileNavOverlay.classList.contains('active') && e.key === 'Tab') {
+                const focusableElements = mobileNavOverlay.querySelectorAll('a');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
+        });
+
+        // Improve form accessibility
+        const formInputs = document.querySelectorAll('.form-control');
+        formInputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('focused');
+            });
+        });
+
+        // Handle resize events
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                // Close mobile menu on resize to desktop
+                if (window.innerWidth > 768 && mobileNavOverlay.classList.contains('active')) {
+                    toggleMobileNav();
+                }
+            }, 250);
+        });
+
+        // Lazy loading for background images and optimize performance
+        const lazyElements = document.querySelectorAll('.page-header, .quick-contact');
+        
+        const lazyObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('loaded');
+                    lazyObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        lazyElements.forEach(element => {
+            lazyObserver.observe(element);
+        });
+
+        // Improve touch interactions on mobile
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.contact-item, .social-link, .quick-action').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                element.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        }
+
+        // Add loading states and error handling for external links
+        document.querySelectorAll('a[target="_blank"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const icon = this.querySelector('i');
+                if (icon && !icon.classList.contains('fa-spin')) {
+                    const originalClass = icon.className;
+                    icon.className = 'fas fa-spinner fa-spin';
+                    
+                    setTimeout(() => {
+                        icon.className = originalClass;
+                    }, 1000);
+                }
+            });
+        });
+
+        // Performance optimization: Debounce scroll events
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Apply debounce to scroll handler
+        const debouncedScrollHandler = debounce(function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(30, 41, 59, 0.95)';
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.background = 'rgba(30, 41, 59, 0.8)';
+                navbar.style.boxShadow = 'none';
+            }
+        }, 10);
+
+        window.removeEventListener('scroll', arguments.callee);
+        window.addEventListener('scroll', debouncedScrollHandler, { passive: true });
     </script>
 </body>
 </html>
