@@ -283,7 +283,7 @@
         }
 
         .project-image {
-            height: 150px;
+            height: 191px;
             background: var(--gradient-secondary);
             display: flex;
             align-items: center;
@@ -363,6 +363,17 @@
             flex: 1;
             min-width: fit-content;
             text-align: center;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
 
         .link-primary {
@@ -649,10 +660,45 @@
     <section class="projects-section">
         <div class="projects-container">
             <div class="projects-grid">
+                <!-- VM Placement & CDN Optimizer -->
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <img src="images/VMPlacementCDNOptimization.png" alt="VM Placement & CDN Optimizer Screenshot" class="project-screenshot">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">VM Placement & CDN Optimizer</h3>
+                        <p class="project-category">Cloud Infrastructure • Machine Learning • Optimization</p>
+                        <p class="project-description">
+                            A machine learning system that optimizes virtual machine placement and CDN performance. Uses predictive modeling and ILP optimization to reduce latency and costs, with a real-time analytics dashboard for insights.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">NumPy</span>
+                            <span class="tech-tag">PuLP</span>
+                            <span class="tech-tag">Plotly</span>
+                            <span class="tech-tag">LightGBM</span>
+                            <span class="tech-tag">XGBoost</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/vinayakjoshi04/VM_Placement_and_CDN_Optimization" class="project-link link-primary" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                                View Code
+                            </a>
+                            <a href="https://vmplacementandcdnoptimization-mnzkzoya3ysevnq3h3qsj6.streamlit.app/" class="project-link link-secondary" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-play"></i>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Diabetes Risk Predictor -->
                 <div class="project-card fade-in">
                     <div class="project-image">
-                        <i class="fas fa-heartbeat"></i>
+                        <img src="images/DiabetesRisk.png" alt="Diabetes Risk Predictor Screenshot" class="project-screenshot">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Diabetes Risk Predictor</h3>
@@ -714,18 +760,18 @@
                 <!-- AI Story Generator -->
                 <div class="project-card fade-in">
                     <div class="project-image">
-                        <i class="fas fa-book-open"></i>
+                        <img src="images/AIStory.png" alt="AI Story Generator Screenshot" class="project-screenshot">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">AI Story Generator</h3>
                         <p class="project-category">GenAI • Natural Language Processing</p>
                         <p class="project-description">
-                            Developed a feature-rich web application leveraging Google Gemini AI for intelligent story generation with customizable parameters including genre, length, character types, and multi-language support across 5 languages. Implemented advanced features including story continuation, text-to-speech integration, and PDF/TXT export functionality.
+                            Developed a feature-rich web application leveraging Google Gemini API for intelligent story generation with customizable parameters including genre, length, character types, and multi-language support across 5 languages. Implemented advanced features including story continuation, text-to-speech integration, and PDF/TXT export functionality.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">Google Gemini AI</span>
+                            <span class="tech-tag">Google Gemini API</span>
                             <span class="tech-tag">NLP</span>
                             <span class="tech-tag">Web Development</span>
                         </div>
@@ -742,10 +788,43 @@
                     </div>
                 </div>
 
+                <!-- Social Media Addiction Assessment -->
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <img src="images/SocialmediaAddiction.png" alt="Social Media Addiction Assessment Screenshot" class="project-screenshot">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Social Media Addiction Assessment</h3>
+                        <p class="project-category">Healthcare & Wellbeing • Machine Learning • Streamlit</p>
+                        <p class="project-description">
+                            An interactive assessment web app that evaluates digital wellness and social media addiction risk using validated questionnaires and ML-backed scoring. Provides personalized recommendations, visualizations, and exportable reports. Built with Streamlit for the UI and Scikit-learn for the risk model.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">NumPy</span>
+                            <span class="tech-tag">Requests</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">Gunicorn</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/vinayakjoshi04/Students-SocialMedia-Addiction" class="project-link link-primary" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                                View Code
+                            </a>
+                            <a href="https://students-socialmedia-addiction-agdc5ytlqggdcqjtqrr5hr.streamlit.app/" class="project-link link-secondary" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-play"></i>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Mom's Kitchen Food Delivery Platform -->
                 <div class="project-card fade-in">
                     <div class="project-image">
-                        <i class="fas fa-utensils"></i>
+                        <img src="images/MomsKitchen.png" alt="Mom's Kitchen Food Delivery Platform Screenshot" class="project-screenshot">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Mom's Kitchen Food Delivery Platform</h3>
@@ -776,13 +855,13 @@
                 <!-- Rain Predictor -->
                 <div class="project-card fade-in">
                     <div class="project-image">
-                        <i class="fas fa-cloud-rain"></i>
+                        <img src="images/RainWater.png" alt="Rain Predictor Screenshot" class="project-screenshot">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Rain Predictor</h3>
                         <p class="project-category">Flask • Machine Learning</p>
                         <p class="project-description">
-                             This project implements a robust rainfall prediction system that combines meteorological data analysis with machine learning to forecast whether it will rain on a given day. The system achieves 82.43% accuracy using XGBoost classification and provides predictions through an intuitive web interface.
+                            This project implements a robust rainfall prediction system that combines meteorological data analysis with machine learning to forecast whether it will rain on a given day. The system achieves 82.43% accuracy using XGBoost classification and provides predictions through an intuitive web interface.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
@@ -807,13 +886,13 @@
                 <!-- Car Price Predictor -->
                 <div class="project-card fade-in">
                     <div class="project-image">
-                        <i class="fas fa-car"></i>
+                        <img src="images/CarPrice.png" alt="Car Price Predictor Screenshot" class="project-screenshot">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Car Price Predictor</h3>
                         <p class="project-category">Flask • Machine Learning</p>
                         <p class="project-description">
-                             The Car Price Predictor is a web application that uses machine learning to predict the price of used cars based on various features and specifications. This project integrates a Linear Regression model with a Flask backend and an intuitive HTML/CSS/JavaScript frontend to provide users with accurate price estimates.
+                            The Car Price Predictor is a web application that uses machine learning to predict the price of used cars based on various features and specifications. This project integrates a Linear Regression model with a Flask backend and an intuitive HTML/CSS/JavaScript frontend to provide users with accurate price estimates.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
@@ -826,6 +905,10 @@
                             <a href="https://github.com/vinayakjoshi04/Car-Price-Predictor" class="project-link link-primary" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i>
                                 View Code
+                            </a>
+                            <a href="https://car-price-predictor-ksfh.onrender.com/" class="project-link link-secondary" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-play"></i>
+                                Live Demo
                             </a>
                         </div>
                     </div>
